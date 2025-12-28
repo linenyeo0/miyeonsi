@@ -1,0 +1,512 @@
+* { box-sizing: border-box; }
+:root{
+  --bg:#0b0f1a;
+  --card:#111a2b;
+  --card2:#0f1626;
+  --line:rgba(255,255,255,.08);
+  --txt:#ffffff;
+  --sub:rgba(255,255,255,.75);
+  --accent:#7c5cff;
+  --danger:#ff3b5c;
+  --shadow:0 20px 60px rgba(0,0,0,.45);
+  --r:18px;
+}
+
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", sans-serif;
+  background: radial-gradient(1100px 600px at 50% -50%, rgba(124,92,255,.35), transparent 60%),
+              radial-gradient(900px 500px at 90% 0%, rgba(255,59,92,.15), transparent 55%),
+              var(--bg);
+  color:var(--txt);
+  min-height:100vh;
+}
+
+.screen{
+  width:100%;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+.hidden{ display:none !important; }
+
+.panel{
+  width:min(520px, 100%);
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border:1px solid var(--line);
+  border-radius: calc(var(--r) + 6px);
+  padding:26px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+.title{ margin:0 0 6px; font-size:34px; letter-spacing:-.5px; }
+.titleSm{ margin:0 0 6px; font-size:26px; letter-spacing:-.3px; }
+.subtitle{ margin:0 0 18px; color:var(--sub); line-height:1.45; }
+.hint{ margin:16px 0 0; color:rgba(255,255,255,.6); font-size:13px; }
+
+.input{
+  width:100%;
+  padding:14px 14px;
+  border-radius: 14px;
+  border:1px solid var(--line);
+  background: rgba(0,0,0,.25);
+  color:var(--txt);
+  outline:none;
+  font-size:15px;
+}
+
+.row{ display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; }
+
+.menuGrid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:10px;
+}
+
+.btn{
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.05);
+  color:var(--txt);
+  padding:12px 14px;
+  border-radius: 14px;
+  cursor:pointer;
+  font-weight:700;
+  transition: transform .12s ease, background .12s ease, border-color .12s ease;
+}
+.btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.14); }
+.btn:active{ transform: translateY(0px); }
+
+.btn.primary{
+  background: rgba(124,92,255,.22);
+  border-color: rgba(124,92,255,.4);
+}
+.btn.primary:hover{ background: rgba(124,92,255,.28); }
+
+.btn.danger{
+  background: rgba(255,59,92,.16);
+  border-color: rgba(255,59,92,.4);
+}
+.btn.small{ padding:9px 10px; border-radius: 12px; font-size:13px; }
+
+.topbar{
+  position:fixed;
+  left:0; top:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 16px;
+  border-bottom:1px solid var(--line);
+  background: rgba(10,14,24,.65);
+  backdrop-filter: blur(10px);
+  z-index:10;
+}
+.brand{ font-weight:900; letter-spacing:.5px; opacity:.95; }
+
+.sysBtns{ display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+
+.stage{
+  width:100%;
+  min-height:100vh;
+  padding-top:70px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  position:relative;
+}
+
+.bg{
+  position:absolute;
+  inset:70px 0 0 0;
+  background:
+    radial-gradient(800px 400px at 20% 20%, rgba(124,92,255,.14), transparent 60%),
+    radial-gradient(900px 500px at 90% 20%, rgba(255,59,92,.10), transparent 55%),
+    linear-gradient(180deg, rgba(255,255,255,.03), transparent 65%);
+  pointer-events:none;
+}
+
+.choices{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  bottom: 230px;
+  width:min(640px, calc(100% - 32px));
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center;
+  z-index:5;
+}
+
+.choiceBtn{
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.06);
+  color:var(--txt);
+  cursor:pointer;
+  font-weight:800;
+}
+.choiceBtn:hover{ background: rgba(255,255,255,.09); }
+
+.dialogue{
+  width:min(820px, calc(100% - 32px));
+  margin-bottom:26px;
+  border:1px solid var(--line);
+  background: rgba(10,14,24,.72);
+  backdrop-filter: blur(10px);
+  border-radius: 22px;
+  padding:18px 18px 16px;
+  box-shadow: var(--shadow);
+  z-index:6;
+  position:relative;
+}
+
+.dialogue.isNarration .namePlate{ display:none !important; }
+
+.namePlate{
+  display:inline-block;
+  padding:8px 12px;
+  border-radius: 999px;
+  background: rgba(124,92,255,.18);
+  border:1px solid rgba(124,92,255,.35);
+  font-weight:900;
+  margin-bottom:10px;
+}
+
+.text{
+  white-space:pre-wrap;
+  line-height:1.55;
+  font-size:16px;
+}
+
+.nextHint{
+  margin-top:10px;
+  color:rgba(255,255,255,.55);
+  font-size:12px;
+  text-align:right;
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:140px;
+  width:min(520px, calc(100% - 32px));
+  border:1px solid var(--line);
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding:12px 14px;
+  white-space:pre-wrap;
+  opacity:0;
+  pointer-events:none;
+  transition: opacity .15s ease, transform .15s ease;
+  z-index:20;
+}
+.toast.show{
+  opacity:1;
+  transform: translateX(-50%) translateY(-6px);
+}
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,.55);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:30;
+}
+
+.modal{
+  width:min(560px, 100%);
+  background: rgba(16,22,38,.92);
+  border:1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  overflow:hidden;
+}
+
+.modalHead{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 14px;
+  border-bottom:1px solid var(--line);
+}
+
+.modalTitle{ font-weight:1000; letter-spacing:-.2px; }
+
+.modalBody{
+  padding:14px;
+  color: rgba(255,255,255,.9);
+  white-space:pre-wrap;
+  line-height:1.55;
+}
+
+.modalText{
+  color: rgba(255,255,255,.88);
+  margin-bottom:12px;
+}
+
+.statusGrid{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap:10px;
+  margin-bottom:12px;
+}
+.statusCard{
+  background: rgba(255,255,255,.05);
+  border:1px solid var(--line);
+  border-radius: 16px;
+  padding:12px;
+  text-align:center;
+}
+.statusName{ color:rgba(255,255,255,.7); font-weight:900; font-size:13px; }
+.statusVal{ font-size:22px; font-weight:1000; margin-top:6px; }
+
+.mini{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  color:rgba(255,255,255,.7);
+  font-size:13px;
+  margin-bottom:10px;
+}
+/* ===== Modal ===== */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  z-index: 9999;
+}
+.modalOverlay.hidden { display: none; }
+
+.modalPanel {
+  width: min(520px, 92vw);
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(15, 18, 28, .95);
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.45);
+  overflow: hidden;
+}
+
+.modalHeader, .modalFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.modalFooter {
+  border-bottom: none;
+  border-top: 1px solid rgba(255,255,255,.08);
+  justify-content: flex-end;
+}
+.modalTitle { font-weight: 800; }
+
+.modalBody {
+  padding: 14px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+.modalText { opacity: .95; }
+
+.row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+/* =========================
+   VN 필수 UI 스타일 세트
+   (toast / overlay / modal / hidden)
+   ========================= */
+
+/* 공통 */
+.hidden { display: none !important; }
+.row { display: flex; gap: 10px; align-items: center; justify-content: center; flex-wrap: wrap; }
+
+/* 버튼 기본 (이미 있으면 생략 가능) */
+.btn { padding: 10px 14px; border: 0; border-radius: 12px; cursor: pointer; }
+.btn.small { padding: 8px 10px; border-radius: 10px; font-size: 13px; }
+.btn.primary { font-weight: 700; }
+.btn.danger { font-weight: 700; }
+
+/* 선택지 버튼 */
+.choiceBtn {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 0;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+/* 토스트 */
+.toast {
+  position: absolute;
+  left: 50%;
+  bottom: 140px;
+  transform: translateX(-50%) translateY(8px);
+  min-width: 240px;
+  max-width: min(520px, 92vw);
+  padding: 12px 14px;
+  border-radius: 14px;
+  opacity: 0;
+  pointer-events: none;
+  white-space: pre-line;
+  transition: opacity .18s ease, transform .18s ease;
+  /* 배경/글자색은 너 테마에 맞게 바꾸면 됨 */
+  background: rgba(0,0,0,0.72);
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  z-index: 50;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* 오버레이/모달 */
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(0,0,0,0.55);
+  z-index: 100;
+}
+
+.modal {
+  width: min(720px, 92vw);
+  max-height: min(82vh, 680px);
+  overflow: auto;
+  border-radius: 18px;
+  padding: 14px;
+  background: rgba(20, 24, 34, 0.96);
+  color: #fff;
+  box-shadow: 0 16px 50px rgba(0,0,0,0.45);
+}
+
+.modalHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 6px 10px;
+}
+
+.modalTitle {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.modalBody {
+  padding: 10px 6px 14px;
+}
+
+.modalText {
+  white-space: pre-line;
+  line-height: 1.55;
+  opacity: 0.95;
+}
+
+/* 상태창 카드들 */
+.statusGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.statusCard {
+  border-radius: 16px;
+  padding: 12px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.statusName { font-weight: 800; opacity: 0.9; margin-bottom: 6px; }
+.statusVal { font-size: 22px; font-weight: 900; }
+
+.mini {
+  margin-top: 12px;
+  display: grid;
+  gap: 6px;
+  opacity: 0.9;
+}
+
+/* 대사창(기본) */
+.dialogue {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  width: min(920px, 92vw);
+  border-radius: 18px;
+  padding: 14px;
+  background: rgba(10, 12, 18, 0.78);
+  color: #fff;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.namePlate {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-weight: 900;
+  background: rgba(255,255,255,0.10);
+  margin-bottom: 8px;
+}
+
+.text { white-space: pre-line; line-height: 1.6; min-height: 64px; }
+
+.nextHint {
+  margin-top: 8px;
+  opacity: 0.75;
+  font-size: 12px;
+  text-align: right;
+}
+
+/* stage 위치 기준 (toast absolute 때문에 필요) */
+.stage { position: relative; }
+/* =========================
+   캐릭터 스프라이트 레이어
+   ========================= */
+.spriteLayer{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index: 5; /* bg보다 위, 대사창/선택지보다 아래 */
+}
+
+.sprite{
+  position:absolute;
+  bottom: 120px; /* 대사창이랑 겹치지 않게 */
+  height: min(78vh, 720px);
+  max-width: 44vw;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 28px rgba(0,0,0,0.45));
+  opacity: 0.98;
+}
+
+.sprite.left { left: 3vw; }
+.sprite.right { right: 3vw; }
+
+/* 말하는 캐릭터 강조(나중에 JS로 토글할거임) */
+.sprite.dim { opacity: 0.45; filter: grayscale(0.2) drop-shadow(0 12px 22px rgba(0,0,0,0.35)); }

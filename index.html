@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>보선녀 VN</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== 타이틀/메뉴 화면 ===== -->
+  <section id="titleScreen" class="screen">
+    <div class="panel">
+      <h1 class="title">보선녀 VN</h1>
+      <p class="subtitle">미연시를 “진짜 게임”으로 만들어서 플레이스토어에 올리자 💞</p>
+
+      <div class="menuGrid">
+        <button id="goStart" class="btn primary">새로 시작</button>
+        <button id="goContinue" class="btn">이어하기</button>
+
+        <button id="goIntro" class="btn">게임 소개</button>
+        <button id="goChars" class="btn">캐릭터</button>
+
+        <button id="goWardrobe" class="btn">옷장</button>
+        <button id="goSettings" class="btn">설정</button>
+      </div>
+
+      <p class="hint">※ 자동 저장 ON/OFF 가능 / 상태창에서 호감도 확인</p>
+    </div>
+  </section>
+
+  <!-- ===== 이름 입력 화면 ===== -->
+  <section id="nameScreen" class="screen hidden">
+    <div class="panel">
+      <h2 class="titleSm">이름 입력</h2>
+      <p class="subtitle">주인공 이름을 정하자!</p>
+
+      <input id="nameInput" class="input" placeholder="이름 입력" maxlength="12" />
+      <div class="row">
+        <button id="startBtn" class="btn primary">게임 시작</button>
+        <button id="backToTitle1" class="btn">뒤로</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 게임 화면 ===== -->
+  <section id="gameScreen" class="screen hidden">
+    <header class="topbar">
+      <div class="brand">VN</div>
+
+      <div class="sysBtns">
+        <button id="menuBtn" class="btn small">메뉴</button>
+        <button id="statusBtn" class="btn small">상태</button>
+        <button id="saveBtn" class="btn small">저장</button>
+        <button id="loadBtn" class="btn small">불러오기</button>
+        <button id="resetBtn" class="btn small danger">리셋</button>
+      </div>
+    </header>
+
+    <main class="stage">
+      <div class="bg"></div>
+
+      <!-- 캐릭터 스프라이트 레이어 -->
+      <div class="spriteLayer">
+        <img id="leftSprite" class="sprite left hidden" alt="left character" />
+        <img id="rightSprite" class="sprite right hidden" alt="right character" />
+      </div>
+
+      <!-- 선택지 -->
+      <div id="choices" class="choices"></div>
+
+      <!-- 대사창 -->
+      <div id="dialogueBox" class="dialogue">
+        <div id="namePlate" class="namePlate" style="display:none;"></div>
+        <div id="text" class="text"></div>
+        <div class="nextHint">클릭해서 진행 ▶</div>
+      </div>
+
+      <!-- 토스트 -->
+      <div id="toast" class="toast"></div>
+    </main>
+  </section>
+
+  <!-- ===== 상태창 오버레이 ===== -->
+  <div id="statusOverlay" class="overlay hidden">
+    <div class="modal">
+      <div class="modalHead">
+        <div class="modalTitle">상태</div>
+        <button id="closeStatusBtn" class="btn small">닫기</button>
+      </div>
+
+      <div class="modalBody">
+        <div class="statusGrid">
+          <div class="statusCard">
+            <div class="statusName">스토마쉐</div>
+            <div id="stoStatus" class="statusVal">0</div>
+          </div>
+          <div class="statusCard">
+            <div class="statusName">이세치슈</div>
+            <div id="iseStatus" class="statusVal">0</div>
+          </div>
+          <div class="statusCard">
+            <div class="statusName">선배</div>
+            <div id="tarStatus" class="statusVal">0</div>
+          </div>
+
+          <!-- ✅ 여기로 옮김(안정적으로 보이게) -->
+          <div class="statusCard hidden" id="ribCard">
+            <div class="statusName">리복매</div>
+            <div id="ribStatus" class="statusVal">0</div>
+          </div>
+
+          <div class="statusCard hidden" id="araCard">
+            <div class="statusName">아라랑궁</div>
+            <div id="araStatus" class="statusVal">0</div>
+          </div>
+        </div>
+
+        <div class="mini">
+          <div>착장: <span id="outfitLabel">uniform</span></div>
+          <div>자동저장: <span id="autosaveLabel">ON</span></div>
+        </div>
+
+        <div class="row">
+          <button id="closeStatusBtn2" class="btn primary">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 공용 모달 (소개/캐릭터/옷장/설정/메뉴) ===== -->
+  <div id="modalOverlay" class="overlay hidden">
+    <div class="modal">
+      <div class="modalHead">
+        <div id="modalTitle" class="modalTitle">제목</div>
+        <button id="closeModalBtn" class="btn small">닫기</button>
+      </div>
+
+      <div id="modalBody" class="modalBody"></div>
+
+      <div class="row">
+        <button id="modalOkBtn" class="btn primary">확인</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/scenes.day1.js"></script>
+  <script src="js/scenes.day2.js"></script>
+  <script src="js/scenes.day3.js"></script>
+  <script src="js/scenes.day4.js"></script>
+  <script src="js/scenes.day5.js"></script>
+  <script src="main.js"></script>
+
+</body>
+</html>
